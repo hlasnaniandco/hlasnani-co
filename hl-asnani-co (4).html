@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>H L ASNANI & CO. | Chartered Accountants</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d2045;
+    --navy-mid: #153066;
+    --blue: #1e4da1;
+    --blue-light: #2d68d8;
+    --accent: #c9a227;
+    --accent-light: #f0c94b;
+    --white: #ffffff;
+    --off-white: #f6f8fc;
+    --text: #1a2340;
+    --text-muted: #556080;
+    --border: #dce4f0;
+    --shadow: 0 8px 40px rgba(13,32,69,0.10);
+    --radius: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--off-white); }
+  ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+  /* ══════════════════════════════════
+     NAV
+  ══════════════════════════════════ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(13,32,69,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,162,39,0.18);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(13,32,69,0.25); }
+
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px; height: 68px;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px; cursor: pointer;
+  }
+  .nav-logo-icon {
+    width: 42px; height: 42px; background: var(--white);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; overflow: hidden; padding: 2px;
+  }
+  .nav-logo-icon img {
+    width: 100%; height: 100%; object-fit: contain;
+  }
+  .nav-brand-text { line-height: 1.2; }
+  .nav-brand-text span { display: block; }
+  .nav-brand-text .main { color: var(--white); font-size: 15px; font-weight: 600; }
+  .nav-brand-text .sub { color: var(--accent); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); font-size: 13.5px; font-weight: 500;
+    padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    transition: all .2s; text-decoration: none;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    background: rgba(201,162,39,0.15); color: var(--accent-light);
+  }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px;
+  }
+  .hamburger span {
+    width: 24px; height: 2px; background: var(--white); border-radius: 2px;
+    transition: all .3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: var(--navy); z-index: 999; padding: 12px 20px 20px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a {
+    display: block; color: rgba(255,255,255,0.85); padding: 13px 14px;
+    font-size: 15px; font-weight: 500; cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.07); transition: color .2s;
+  }
+  .mobile-menu a:hover { color: var(--accent-light); }
+
+  /* ══════════════════════════════════
+     PAGES
+  ══════════════════════════════════ */
+  .page { display: none; padding-top: 68px; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ══════════════════════════════════
+     HOME HERO
+  ══════════════════════════════════ */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 55%, var(--blue) 100%);
+    min-height: 92vh; display: flex; align-items: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle cx='40' cy='40' r='1' fill='rgba(201,162,39,0.15)'/%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.6;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,162,39,0.18); border: 1px solid rgba(201,162,39,0.4);
+    color: var(--accent-light); font-size: 12px; font-weight: 600;
+    padding: 6px 16px; border-radius: 999px; letter-spacing: 1.2px;
+    text-transform: uppercase; margin-bottom: 24px;
+  }
+  .hero-content { position: relative; max-width: 1200px; margin: 0 auto; padding: 60px 28px; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 68px);
+    color: var(--white); line-height: 1.1; margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--white); }
+  .hero-sub {
+    font-size: clamp(14px,2vw,18px); color: rgba(255,255,255,0.75);
+    max-width: 560px; margin-bottom: 36px; line-height: 1.7;
+  }
+  .hero-contacts {
+    display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 44px;
+  }
+  .hero-contact-item {
+    display: flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.85); font-size: 14px;
+  }
+  .hero-contact-item i { color: var(--accent); font-size: 15px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: var(--navy);
+    font-weight: 700; font-size: 14px; padding: 14px 30px;
+    border-radius: 10px; border: none; cursor: pointer;
+    transition: all .25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    letter-spacing: 0.3px;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,162,39,0.35); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    font-weight: 600; font-size: 14px; padding: 14px 30px;
+    border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.35); cursor: pointer;
+    transition: all .25s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 60px; flex-wrap: wrap;
+  }
+  .stat { text-align: left; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--accent); font-weight: 700; line-height: 1; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ══════════════════════════════════
+     SECTION COMMON
+  ══════════════════════════════════ */
+  section { padding: 80px 28px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: var(--blue); text-transform: uppercase; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::before { content: ''; width: 28px; height: 2px; background: var(--accent); border-radius: 2px; }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(26px,4vw,42px);
+    color: var(--navy); line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-desc { color: var(--text-muted); font-size: 16px; line-height: 1.75; max-width: 600px; }
+
+  /* ══════════════════════════════════
+     SERVICES CARDS
+  ══════════════════════════════════ */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; margin-top: 48px;
+  }
+  .service-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px 28px;
+    transition: all .3s; position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: linear-gradient(90deg, var(--blue), var(--accent));
+    transform: scaleX(0); transform-origin: left; transition: transform .3s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: transparent; }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 54px; height: 54px; background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: var(--white); margin-bottom: 20px;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 20px;
+    color: var(--navy); margin-bottom: 10px;
+  }
+  .service-card p { color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+
+  /* ══════════════════════════════════
+     WHY CHOOSE US
+  ══════════════════════════════════ */
+  .why-section { background: var(--off-white); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px; margin-top: 48px;
+  }
+  .why-card {
+    background: var(--white); border-radius: var(--radius);
+    padding: 28px 24px; text-align: center;
+    box-shadow: 0 2px 16px rgba(13,32,69,0.06); transition: box-shadow .3s;
+  }
+  .why-card:hover { box-shadow: var(--shadow); }
+  .why-icon { font-size: 32px; margin-bottom: 16px; }
+  .why-card h4 { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .why-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.65; }
+
+  /* ══════════════════════════════════
+     ABOUT PAGE
+  ══════════════════════════════════ */
+  .about-hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 80px 28px 60px;
+  }
+  .about-hero-inner { max-width: 1200px; margin: 0 auto; }
+  .about-hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(30px,5vw,52px);
+    color: var(--white); margin-bottom: 12px;
+  }
+  .about-hero p { color: rgba(255,255,255,0.75); font-size: 16px; max-width: 560px; }
+
+  .about-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow);
+  }
+  .ca-profile { display: flex; align-items: flex-start; gap: 28px; flex-wrap: wrap; margin-bottom: 36px; }
+  .ca-avatar {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--navy));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 32px; color: var(--white);
+    flex-shrink: 0; border: 3px solid var(--accent);
+  }
+  .ca-info h2 { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--navy); }
+  .ca-info .membership { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+  .ca-info .tag {
+    display: inline-block; margin-top: 10px;
+    background: linear-gradient(90deg, var(--blue), var(--navy));
+    color: var(--white); font-size: 11px; padding: 4px 14px;
+    border-radius: 999px; font-weight: 600; letter-spacing: 0.8px;
+  }
+  .about-divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  .vision-mission { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .vm-card {
+    background: var(--off-white); border-radius: 12px; padding: 28px;
+    border-left: 4px solid var(--accent);
+  }
+  .vm-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 12px; }
+  .vm-card p { color: var(--text-muted); font-size: 14.5px; line-height: 1.7; }
+
+  /* ══════════════════════════════════
+     SERVICES PAGE
+  ══════════════════════════════════ */
+  .services-page-hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 80px 28px 60px;
+  }
+  .services-page-hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(30px,5vw,52px);
+    color: var(--white); max-width: 1200px; margin: 0 auto 12px;
+  }
+  .services-page-hero p {
+    color: rgba(255,255,255,0.75); font-size: 16px;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .service-detail-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 28px; margin-top: 48px;
+  }
+  .service-detail-card {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; transition: box-shadow .3s;
+  }
+  .service-detail-card:hover { box-shadow: var(--shadow); }
+  .sdc-header {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    padding: 24px 28px; display: flex; align-items: center; gap: 14px;
+  }
+  .sdc-header i { font-size: 26px; color: var(--accent); }
+  .sdc-header h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); }
+  .sdc-body { padding: 24px 28px; }
+  .sdc-list { list-style: none; }
+  .sdc-list li {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+    font-size: 14.5px; color: var(--text);
+  }
+  .sdc-list li:last-child { border-bottom: none; }
+  .sdc-list li::before { content: '▸'; color: var(--accent); font-size: 13px; flex-shrink: 0; }
+
+  /* ══════════════════════════════════
+     BLOG PAGE
+  ══════════════════════════════════ */
+  .blog-hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 80px 28px 60px;
+  }
+  .blog-hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(30px,5vw,52px);
+    color: var(--white); max-width: 1200px; margin: 0 auto 12px;
+  }
+  .blog-hero p { color: rgba(255,255,255,0.75); max-width: 1200px; margin: 0 auto; font-size: 16px; }
+
+  .blog-categories {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px;
+  }
+  .cat-btn {
+    padding: 8px 18px; border-radius: 999px; font-size: 13px; font-weight: 600;
+    border: 1.5px solid var(--border); background: transparent; cursor: pointer;
+    color: var(--text-muted); transition: all .2s;
+  }
+  .cat-btn.active, .cat-btn:hover {
+    background: var(--navy); color: var(--white); border-color: var(--navy);
+  }
+
+  .blog-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 24px;
+  }
+  .blog-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden; transition: box-shadow .3s;
+  }
+  .blog-card:hover { box-shadow: var(--shadow); }
+  .blog-card-top {
+    padding: 24px 24px 16px;
+    background: linear-gradient(135deg, var(--off-white), var(--white));
+    border-bottom: 1px solid var(--border);
+  }
+  .blog-tag {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 12px;
+  }
+  .tag-tax { background: rgba(30,77,161,0.1); color: var(--blue); }
+  .tag-gst { background: rgba(201,162,39,0.15); color: #9c7a10; }
+  .tag-mca { background: rgba(13,32,69,0.08); color: var(--navy); }
+  .tag-budget { background: rgba(40,167,69,0.1); color: #1a7a34; }
+  .blog-card h4 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--navy); line-height: 1.4; }
+  .blog-card-body { padding: 16px 24px 20px; }
+  .blog-card-body p { font-size: 13.5px; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
+  .blog-date { font-size: 11.5px; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+  .coming-soon-banner {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    border-radius: var(--radius); padding: 44px 40px; text-align: center;
+    margin-top: 40px; color: var(--white);
+  }
+  .coming-soon-banner h3 { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 10px; }
+  .coming-soon-banner p { color: rgba(255,255,255,0.7); font-size: 15px; }
+
+  /* ══════════════════════════════════
+     CONTACT PAGE
+  ══════════════════════════════════ */
+  .contact-hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 80px 28px 60px;
+  }
+  .contact-hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(30px,5vw,52px);
+    color: var(--white); max-width: 1200px; margin: 0 auto 12px;
+  }
+  .contact-hero p { color: rgba(255,255,255,0.75); max-width: 1200px; margin: 0 auto; }
+
+  .contact-layout {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; margin-top: 48px;
+  }
+  .contact-info-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 36px;
+  }
+  .contact-info-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 22px;
+    color: var(--navy); margin-bottom: 28px;
+  }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px;
+  }
+  .contact-item-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--blue), var(--navy));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-size: 16px; flex-shrink: 0;
+  }
+  .contact-item-text strong { display: block; font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+  .contact-item-text span { font-size: 15px; color: var(--text); line-height: 1.5; }
+
+  .hours-block {
+    background: var(--off-white); border-radius: 12px; padding: 20px 24px; margin-top: 28px;
+    border-left: 4px solid var(--accent);
+  }
+  .hours-block strong { font-size: 13px; font-weight: 700; letter-spacing: 0.8px;
+    text-transform: uppercase; color: var(--navy); }
+  .hours-block p { font-size: 14.5px; color: var(--text-muted); margin-top: 6px; }
+
+  .contact-form-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 36px;
+  }
+  .contact-form-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 22px;
+    color: var(--navy); margin-bottom: 28px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600;
+    color: var(--text-muted); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 13px 16px; border: 1.5px solid var(--border);
+    border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14.5px;
+    color: var(--text); background: var(--white); transition: border-color .2s; outline: none;
+    resize: vertical;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--blue); box-shadow: 0 0 0 3px rgba(30,77,161,0.08);
+  }
+  .form-submit {
+    background: linear-gradient(135deg, var(--blue), var(--navy));
+    color: var(--white); font-weight: 700; font-size: 15px; padding: 15px 36px;
+    border: none; border-radius: 10px; cursor: pointer; transition: all .25s;
+    display: inline-flex; align-items: center; gap: 8px; width: 100%; justify-content: center;
+  }
+  .form-submit:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,32,69,0.2); }
+
+  .form-success {
+    display: none; background: #e8f5e9; border: 1px solid #81c784;
+    border-radius: 10px; padding: 16px 20px; color: #2e7d32; font-size: 14.5px;
+    align-items: center; gap: 10px; margin-top: 16px;
+  }
+  .form-success.show { display: flex; }
+
+  /* ══════════════════════════════════
+     MAP EMBED
+  ══════════════════════════════════ */
+  .map-section { background: var(--off-white); padding: 60px 28px; }
+  .map-section h3 {
+    font-family: 'Playfair Display', serif; font-size: 26px;
+    color: var(--navy); max-width: 1200px; margin: 0 auto 24px;
+  }
+  .map-wrapper { max-width: 1200px; margin: 0 auto; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .map-placeholder {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    height: 300px; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; color: var(--white); text-align: center; gap: 12px;
+  }
+  .map-placeholder i { font-size: 48px; color: var(--accent); }
+  .map-placeholder h4 { font-family: 'Playfair Display', serif; font-size: 20px; }
+  .map-placeholder p { color: rgba(255,255,255,0.7); font-size: 14px; }
+
+  /* ══════════════════════════════════
+     DISCLAIMER FOOTER
+  ══════════════════════════════════ */
+  .disclaimer-bar {
+    background: #f0f4ff; border-top: 2px solid var(--border);
+    padding: 20px 28px; text-align: center;
+  }
+  .disclaimer-bar p {
+    max-width: 900px; margin: 0 auto; font-size: 11.5px;
+    color: var(--text-muted); line-height: 1.7;
+  }
+  .disclaimer-bar strong { color: var(--navy); }
+
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.65);
+    padding: 48px 28px 24px;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand .logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .footer-brand .logo-icon {
+    width: 40px; height: 40px; background: var(--white);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    overflow: hidden; padding: 2px; flex-shrink: 0;
+  }
+  .footer-brand .logo-icon img {
+    width: 100%; height: 100%; object-fit: contain;
+  }
+  .footer-brand .name { font-size: 15px; font-weight: 600; color: var(--white); }
+  .footer-brand p { font-size: 13px; line-height: 1.7; }
+  .footer-col h4 { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 9px; }
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.6); font-size: 13.5px; cursor: pointer;
+    transition: color .2s; text-decoration: none;
+  }
+  .footer-col ul li a:hover { color: var(--accent-light); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 12px; }
+  .footer-bottom p { font-size: 12px; }
+  .footer-bottom .icai { font-size: 12px; color: var(--accent); }
+
+  /* ══════════════════════════════════
+     WHATSAPP FLOAT
+  ══════════════════════════════════ */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+    width: 58px; height: 58px; background: #25d366;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: var(--white); box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+    cursor: pointer; transition: all .25s; text-decoration: none;
+    animation: waPulse 2.5s infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+  @keyframes waPulse {
+    0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.45); }
+    50% { box-shadow: 0 4px 30px rgba(37,211,102,0.75), 0 0 0 10px rgba(37,211,102,0.1); }
+  }
+
+  /* ══════════════════════════════════
+     ANIMATIONS
+  ══════════════════════════════════ */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .6s, transform .6s; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up:nth-child(1) { transition-delay: .05s; }
+  .fade-up:nth-child(2) { transition-delay: .12s; }
+  .fade-up:nth-child(3) { transition-delay: .19s; }
+  .fade-up:nth-child(4) { transition-delay: .26s; }
+  .fade-up:nth-child(5) { transition-delay: .33s; }
+  .fade-up:nth-child(6) { transition-delay: .40s; }
+
+  /* ══════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════ */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .contact-layout { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .vision-mission { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 60px 20px; }
+    .hero-stats { gap: 24px; }
+    .service-detail-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="showPage('home')">
+      <div class="nav-logo-icon"><img src="data:image/png;base64,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" alt="CA India Logo"/></div>
+      <div class="nav-brand-text">
+        <span class="main">H L ASNANI & CO.</span>
+        <span class="sub">Chartered Accountants</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+      <li><a onclick="showPage('about')" id="nav-about">About Us</a></li>
+      <li><a onclick="showPage('services')" id="nav-services">Services</a></li>
+      <li><a onclick="showPage('blog')" id="nav-blog">Updates</a></li>
+      <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');toggleMobile()">Home</a>
+  <a onclick="showPage('about');toggleMobile()">About Us</a>
+  <a onclick="showPage('services');toggleMobile()">Services</a>
+  <a onclick="showPage('blog');toggleMobile()">Updates & Blog</a>
+  <a onclick="showPage('contact');toggleMobile()">Contact Us</a>
+</div>
+
+<!-- ════════════════════════════════════
+     HOME PAGE
+════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-certificate"></i> Established 2023 · Gandhidham, Gujarat</div>
+      <h1>H L ASNANI <span>& CO.</span></h1>
+      <p class="hero-sub">Professional services in Taxation, Audit & Business Advisory — delivered with integrity and technical competence.</p>
+      <div class="hero-contacts">
+        <div class="hero-contact-item"><i class="fas fa-map-marker-alt"></i> Gandhidham, Gujarat</div>
+        <div class="hero-contact-item"><i class="fas fa-phone"></i> +91 94083 49927</div>
+        <div class="hero-contact-item"><i class="fas fa-envelope"></i> asnanih97@gmail.com</div>
+      </div>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('contact')"><i class="fas fa-paper-plane"></i> Get In Touch</button>
+        <button class="btn-outline" onclick="showPage('services')"><i class="fas fa-briefcase"></i> Our Services</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Core Services</div></div>
+        <div class="stat"><div class="stat-num">2023</div><div class="stat-label">Established</div></div>
+        <div class="stat"><div class="stat-num">ICAI</div><div class="stat-label">Registered Firm</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Welcome -->
+  <section style="background:var(--white)">
+    <div class="container">
+      <div style="max-width:760px">
+        <p class="section-label">Welcome</p>
+        <h2 class="section-title">A Firm Built on<br>Professional Excellence</h2>
+        <p class="section-desc" style="max-width:100%">
+          Welcome to <strong>H L ASNANI & CO.</strong>, a firm of Chartered Accountants established in 2023 and based in Gandhidham, Gujarat. We provide professional services in the areas of Income Tax, GST, Audit, Accounting, Company Incorporation, and Financial Advisory. Our approach is based on integrity, professional ethics, and technical competence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Services -->
+  <section style="background:var(--off-white)">
+    <div class="container">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title">Our Core Services</h2>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+          <h3>Income Tax</h3>
+          <p>ITR filing, tax planning, TDS compliance, and scrutiny representation for individuals, firms & companies.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon"><i class="fas fa-receipt"></i></div>
+          <h3>GST Services</h3>
+          <p>GST registration, return filing, audit, advisory and resolution of GST notices from authorities.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon"><i class="fas fa-search-dollar"></i></div>
+          <h3>Audit & Assurance</h3>
+          <p>Statutory audit, tax audit, internal audit, and compliance audit for all types of entities.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon"><i class="fas fa-building"></i></div>
+          <h3>Company Incorporation</h3>
+          <p>Company & LLP registration, MSME registration, and end-to-end startup advisory services.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Financial Services</h3>
+          <p>Bookkeeping, financial statement preparation, project finance and CMA report preparation.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon"><i class="fas fa-stamp"></i></div>
+          <h3>CA Certifications</h3>
+          <p>Certificates for net worth, income, turnover, and other requirements for banks & regulatory bodies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-section">
+    <div class="container">
+      <p class="section-label">Why Us</p>
+      <h2 class="section-title">Why Choose H L ASNANI & CO.</h2>
+      <div class="why-grid">
+        <div class="why-card fade-up">
+          <div class="why-icon">⚖️</div>
+          <h4>Ethical & Professional</h4>
+          <p>We strictly adhere to the code of conduct prescribed by ICAI in all our engagements.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-icon">⏱️</div>
+          <h4>Timely Compliance</h4>
+          <p>We ensure timely filing and regulatory compliance to help you avoid penalties.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-icon">🤝</div>
+          <h4>Personalized Attention</h4>
+          <p>Every client receives dedicated, tailored advisory suited to their specific needs.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-icon">📚</div>
+          <h4>Updated with Latest Laws</h4>
+          <p>Continuous professional development keeps us current with all regulatory changes.</p>
+        </div>
+      </div>
+      <div style="margin-top:48px;text-align:center">
+        <p style="color:var(--text-muted);font-size:16px;margin-bottom:20px">For professional assistance, feel free to contact us.</p>
+        <button class="btn-primary" onclick="showPage('contact')" style="display:inline-flex;font-size:15px"><i class="fas fa-phone-alt"></i> Contact Us Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="home-footer"></div>
+</div>
+
+<!-- ════════════════════════════════════
+     ABOUT PAGE
+════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <div class="about-hero-inner">
+      <div class="section-label" style="color:var(--accent-light);margin-bottom:10px"><span style="background:var(--accent);width:28px;height:2px;display:inline-block;margin-right:8px;vertical-align:middle"></span>About Us</div>
+      <h1>Meet the Proprietor &<br>Learn About Our Firm</h1>
+      <p>A passionate Chartered Accountant committed to delivering quality financial and advisory services.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="about-card">
+        <div class="ca-profile">
+          <div class="ca-avatar">HA</div>
+          <div class="ca-info">
+            <h2>CA Hitesh L Asnani</h2>
+            <div class="membership">Membership No.: 622666</div>
+            <div class="tag">Proprietor — H L ASNANI & CO.</div>
+          </div>
+        </div>
+        <p style="color:var(--text-muted);font-size:15.5px;line-height:1.8;margin-bottom:20px">
+          H L ASNANI & CO. is a proprietorship firm established in 2023. The firm is engaged in providing professional services in the fields of Taxation, Audit, Accounting, and Financial Consultancy. We are committed to delivering quality services while adhering strictly to professional standards prescribed by the Institute of Chartered Accountants of India (ICAI).
+        </p>
+        <hr class="about-divider"/>
+        <div class="vision-mission">
+          <div class="vm-card">
+            <h3>🎯 Our Vision</h3>
+            <p>To provide reliable and value-driven professional services to individuals, businesses, and corporates — becoming a trusted partner for all financial and compliance needs.</p>
+          </div>
+          <div class="vm-card">
+            <h3>🚀 Our Mission</h3>
+            <p>To assist clients in achieving regulatory compliance and financial clarity through professional expertise and ethical practices — ensuring peace of mind and sustainable growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="disclaimer-bar"><p><strong>⚖ ICAI Disclaimer:</strong> This website is meant solely for the purpose of information and not for the purpose of advertising. H L ASNANI & CO. does not intend to solicit clients through this website. The information provided herein is only for general information and should not be interpreted as solicitation or advertisement.</p></div>
+  <div id="about-footer"></div>
+</div>
+
+<!-- ════════════════════════════════════
+     SERVICES PAGE
+════════════════════════════════════ -->
+<div class="page" id="page-services">
+  <div class="services-page-hero">
+    <h1>Our Professional Services</h1>
+    <p>Comprehensive chartered accountancy services tailored to your personal and business needs.</p>
+  </div>
+  <section>
+    <div class="container">
+      <p class="section-label">Expertise</p>
+      <h2 class="section-title">What We Offer</h2>
+      <div class="service-detail-grid">
+        <div class="service-detail-card fade-up">
+          <div class="sdc-header"><i class="fas fa-file-invoice-dollar"></i><h3>Income Tax</h3></div>
+          <div class="sdc-body">
+            <ul class="sdc-list">
+              <li>ITR Filing (Individual, Firm, Company)</li>
+              <li>Tax Planning & Advisory</li>
+              <li>Representation & Scrutiny Handling</li>
+              <li>TDS Compliance</li>
+            </ul>
+          </div>
+        </div>
+        <div class="service-detail-card fade-up">
+          <div class="sdc-header"><i class="fas fa-receipt"></i><h3>GST Services</h3></div>
+          <div class="sdc-body">
+            <ul class="sdc-list">
+              <li>GST Registration</li>
+              <li>GST Return Filing</li>
+              <li>GST Audit</li>
+              <li>GST Advisory & Notices</li>
+            </ul>
+          </div>
+        </div>
+        <div class="service-detail-card fade-up">
+          <div class="sdc-header"><i class="fas fa-search-dollar"></i><h3>Audit & Assurance</h3></div>
+          <div class="sdc-body">
+            <ul class="sdc-list">
+              <li>Statutory Audit</li>
+              <li>Tax Audit</li>
+              <li>Internal Audit</li>
+              <li>Compliance Audit</li>
+            </ul>
+          </div>
+        </div>
+        <div class="service-detail-card fade-up">
+          <div class="sdc-header"><i class="fas fa-building"></i><h3>Company & Startup Services</h3></div>
+          <div class="sdc-body">
+            <ul class="sdc-list">
+              <li>Company Incorporation</li>
+              <li>LLP Registration</li>
+              <li>MSME Registration</li>
+              <li>Startup Advisory</li>
+            </ul>
+          </div>
+        </div>
+        <div class="service-detail-card fade-up">
+          <div class="sdc-header"><i class="fas fa-chart-bar"></i><h3>Accounting & Financial Services</h3></div>
+          <div class="sdc-body">
+            <ul class="sdc-list">
+              <li>Bookkeeping</li>
+              <li>Financial Statement Preparation</li>
+              <li>Project Finance</li>
+              <li>CMA Report Preparation</li>
+              <li>CA Certification Services</li>
+            </ul>
+          </div>
+        </div>
+        <div class="service-detail-card fade-up">
+          <div class="sdc-header"><i class="fas fa-hand-holding-usd"></i><h3>Financial Advisory</h3></div>
+          <div class="sdc-body">
+            <ul class="sdc-list">
+              <li>Business Setup Consultation</li>
+              <li>Loan Documentation Support</li>
+              <li>Financial Health Assessment</li>
+              <li>MCA Compliance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="disclaimer-bar"><p><strong>⚖ ICAI Disclaimer:</strong> This website is meant solely for the purpose of information and not for the purpose of advertising. H L ASNANI & CO. does not intend to solicit clients through this website.</p></div>
+  <div id="services-footer"></div>
+</div>
+
+<!-- ════════════════════════════════════
+     BLOG / UPDATES PAGE
+════════════════════════════════════ -->
+<div class="page" id="page-blog">
+  <div class="blog-hero">
+    <h1>Updates & Tax Insights</h1>
+    <p>Stay informed with the latest developments in Income Tax, GST, and Corporate Law.</p>
+  </div>
+  <section>
+    <div class="container">
+      <p class="section-label">Resources</p>
+      <h2 class="section-title">Latest Updates</h2>
+      <div class="blog-categories">
+        <button class="cat-btn active">All</button>
+        <button class="cat-btn">Income Tax</button>
+        <button class="cat-btn">GST</button>
+        <button class="cat-btn">MCA</button>
+        <button class="cat-btn">Budget</button>
+      </div>
+      <div class="blog-grid">
+        <!-- Articles will be added here -->
+      </div>
+      <div class="coming-soon-banner">
+        <h3>📅 Compliance Calendar Coming Soon</h3>
+        <p>We are working on an auto-updating compliance calendar with all due dates for Income Tax, GST, TDS, ROC, and more. Stay tuned!</p>
+      </div>
+    </div>
+  </section>
+  <div class="disclaimer-bar"><p><strong>⚖ ICAI Disclaimer:</strong> This website is meant solely for the purpose of information and not for the purpose of advertising. H L ASNANI & CO. does not intend to solicit clients through this website.</p></div>
+  <div id="blog-footer"></div>
+</div>
+
+<!-- ════════════════════════════════════
+     CONTACT PAGE
+════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-hero">
+    <h1>Get In Touch</h1>
+    <p>We'd be glad to assist you with your taxation, audit, or advisory requirements.</p>
+  </div>
+  <section>
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Reach Us</h2>
+      <div class="contact-layout">
+        <div>
+          <div class="contact-info-card">
+            <h3>Contact Information</h3>
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="contact-item-text">
+                <strong>Address</strong>
+                <span>SDX South 27, Near Chawla Chowk,<br>Gandhidham, Kachchh – 370201<br>Gujarat, India</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
+              <div class="contact-item-text">
+                <strong>Mobile / WhatsApp</strong>
+                <span>+91 94083 49927</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-item-text">
+                <strong>Email</strong>
+                <span>asnanih97@gmail.com</span>
+              </div>
+            </div>
+            <div class="hours-block">
+              <strong>🕙 Business Hours</strong>
+              <p>Monday – Saturday &nbsp;|&nbsp; 10:00 AM – 7:00 PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-card">
+          <h3>Send Us a Message</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="fname" placeholder="Your name"/>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="femail" placeholder="your@email.com"/>
+          </div>
+          <div class="form-group">
+            <label>Service Required</label>
+            <select id="fservice">
+              <option value="">— Select a service —</option>
+              <option>Income Tax / ITR Filing</option>
+              <option>GST Registration / Compliance</option>
+              <option>Audit & Assurance</option>
+              <option>Company / LLP Incorporation</option>
+              <option>MSME Registration</option>
+              <option>Accounting & Bookkeeping</option>
+              <option>CA Certification</option>
+              <option>Other Advisory</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea id="fmessage" rows="4" placeholder="Briefly describe your requirement..."></textarea>
+          </div>
+          <button class="form-submit" onclick="submitForm()"><i class="fas fa-paper-plane"></i> Send Enquiry</button>
+          <div class="form-success" id="formSuccess"><i class="fas fa-check-circle"></i> Thank you! We'll reach out to you shortly.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="map-section">
+    <div class="container">
+      <h3>Find Our Office</h3>
+    </div>
+    <div class="map-wrapper" style="max-width:1200px;margin:0 auto;">
+      <div class="map-placeholder">
+        <i class="fas fa-map-marker-alt"></i>
+        <h4>SDX South 27, Near Chawla Chowk</h4>
+        <p>Gandhidham, Kachchh – 370201, Gujarat, India</p>
+        <a href="https://maps.google.com/?q=Gandhidham+Kachchh+Gujarat" target="_blank"
+           style="margin-top:12px;background:var(--accent);color:var(--navy);padding:10px 22px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:7px">
+           <i class="fas fa-directions"></i> Open in Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer-bar">
+    <p><strong>⚖ ICAI Mandatory Disclaimer:</strong> This website is meant solely for the purpose of information and not for the purpose of advertising. H L ASNANI & CO. does not intend to solicit clients through this website. The information provided herein is only for general information and should not be interpreted as solicitation or advertisement.</p>
+  </div>
+  <div id="contact-footer"></div>
+</div>
+
+<!-- ── WHATSAPP FLOAT ── -->
+<a class="wa-float" href="https://wa.me/919408349927" target="_blank" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+// ── FOOTER HTML ──
+const footerHTML = `
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-row">
+          <div class="logo-icon" style="background:white;padding:2px;overflow:hidden;"><img src="data:image/png;base64,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" alt="CA India Logo"/></div>
+          <span class="name">H L ASNANI & CO.</span>
+        </div>
+        <p>A firm of Chartered Accountants based in Gandhidham, Gujarat, providing professional services in Taxation, Audit, and Business Advisory with integrity and competence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('services')">Services</a></li>
+          <li><a onclick="showPage('blog')">Updates</a></li>
+          <li><a onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a onclick="showPage('services')">Income Tax</a></li>
+          <li><a onclick="showPage('services')">GST Services</a></li>
+          <li><a onclick="showPage('services')">Audit & Assurance</a></li>
+          <li><a onclick="showPage('services')">Company Incorporation</a></li>
+          <li><a onclick="showPage('services')">CA Certifications</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 H L ASNANI & CO. All rights reserved.</p>
+      <span class="icai">ICAI Registered Firm · MNo. 622666</span>
+    </div>
+  </div>
+</footer>`;
+
+// Inject footer into all pages
+['home','about','services','blog','contact'].forEach(id => {
+  const el = document.getElementById(id + '-footer');
+  if (el) el.innerHTML = footerHTML;
+});
+
+// ── PAGE NAV ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const link = document.getElementById('nav-' + id);
+  if (link) link.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  observeFadeUps();
+}
+
+// ── MOBILE MENU ──
+function toggleMobile() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── SCROLL NAV SHADOW ──
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ── FADE UP OBSERVER ──
+function observeFadeUps() {
+  const items = document.querySelectorAll('.fade-up:not(.visible)');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  items.forEach(el => observer.observe(el));
+}
+observeFadeUps();
+
+// ── BLOG CATEGORY FILTER ──
+document.querySelectorAll('.cat-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ── CONTACT FORM ──
+function submitForm() {
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const email = document.getElementById('femail').value.trim();
+  if (!name || !phone) { alert('Please fill in at least your name and phone number.'); return; }
+  document.getElementById('formSuccess').classList.add('show');
+  document.getElementById('fname').value = '';
+  document.getElementById('fphone').value = '';
+  document.getElementById('femail').value = '';
+  document.getElementById('fservice').value = '';
+  document.getElementById('fmessage').value = '';
+  setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 5000);
+}
+
+// Initial fade trigger
+setTimeout(observeFadeUps, 200);
+</script>
+</body>
+</html>
